@@ -1,0 +1,223 @@
+$blue: #0366d6;
+$gray: #ccc;
+$gray-dark: #999;
+$gray-light: #eee;
+$overlay-bg: rgba(0, 0, 0, .6);
+$white: #fff;
+$spacing: .5em;
+$border-radious: 4px;
+
+body[data-modal-visible='true'] {
+  overflow: hidden;
+}
+.datetimepicker[data-element='overlay'] {
+  align-items: center;
+  background: $overlay-bg;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  [data-element='modal'],
+  button,
+  select {
+    font-family: sans-serif;
+    font-size: inherit;
+    line-height: 1em;
+  }
+
+  [data-element='modal'] {
+    background-color: $white;
+    box-sizing: border-box;
+    padding: 10px;
+    position: relative;
+    width: 400px;
+    z-index: 9999;
+
+    [data-element='month-selector'] {
+      margin-bottom: $spacing;
+      overflow: hidden;
+      text-align: center;
+
+      span,
+      button {
+        display: inline-block;
+        padding: .5em 1em;
+      }
+
+      button {
+        background-color: transparent;
+        border: 0;
+        border-radius: $border-radious;
+        color: $gray-dark;
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $gray-light;
+        }
+        &[data-action='prev'] {
+          float: left;
+        }
+        &[data-action='next'] {
+          float: right;
+        }
+        &[data-disabled='true'] {
+          visibility: hidden;
+        }
+      }
+    }
+
+    [data-element='week-days'],
+    [data-element='month-days'] {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: $spacing;
+
+      div {
+        border-radius: $border-radious;
+        box-sizing: border-box;
+        padding: .7em 0;
+        text-align: center;
+        width: 14.28571428571429%;
+      }
+    }
+
+    [data-element='week-days'] {
+      color: $gray-dark;
+      font-size: .8em;
+      text-transform: uppercase;
+    }
+
+    [data-element='month-days'] {
+      -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
+
+      [data-day] {
+
+        &[data-disabled='false']:hover {
+          background-color: $gray-light;
+        }
+
+        &[data-selected='true'] {
+          background-color: $blue;
+          color: $gray-light;
+
+          &:not([data-month-location='current']) {
+            background-color: $gray;
+            color: $gray-light;
+
+            &:hover {
+              background-color: $gray;
+            }
+          }
+
+          &:hover {
+            background-color: $blue;
+          }
+        }
+
+        &[data-disabled='true'] {
+          color: $gray-light;
+        }
+      }
+
+      [data-month-location='previous'],
+      [data-month-location='next'] {
+        color: $gray;
+      }
+    }
+
+    [data-element='hour-selector'] {
+      margin-bottom: $spacing;
+      overflow: hidden;
+
+      span {
+        color: $gray-dark;
+        display: inline-block;
+        padding: $spacing 0;
+        text-align: center;
+        width: 4%;
+      }
+
+      select {
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: $white;
+        border: 0;
+        border-radius: $border-radious;
+        cursor: pointer;
+        float: left;
+        padding: $spacing;
+        text-align: right;
+        text-align-last: right;
+        width: 48%;
+
+        &[data-type='minutes'] {
+          float: right;
+          text-align: left;
+          text-align-last: left;
+        }
+
+        option {
+          background-color: $white;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $gray-light;
+        }
+      }
+    }
+
+    [data-element='actions'] {
+      overflow: hidden;
+
+      [data-action] {
+        background-color: transparent;
+        border: 0;
+        border-radius: $border-radious;
+        color: $gray-dark;
+        cursor: pointer;
+        float: left;
+        font-size: .8em;
+        padding: $spacing * 1.8;
+        text-transform: uppercase;
+        width: 50%;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $gray-light;
+        }
+      }
+    }
+
+    &[data-small-width-flag='true'] {
+      width: 100%;
+    }
+  }
+
+  &[data-small-height-flag='true'] {
+    display: block;
+
+    [data-element='modal'] {
+      margin: 20px auto;
+      position: relative;
+    }
+  }
+
+  &[data-visible='false'] {
+    display: none;
+  }
+}

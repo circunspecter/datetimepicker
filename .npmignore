@@ -1,0 +1,10 @@
+/dist/*.map
+/docs
+/scripts
+/test
+.babelrc
+.eslintrc.yaml
+.travis.yml
+gulpfile.js
+webpack.config.js
+WebpackShellPlugin.js

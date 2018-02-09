@@ -1,0 +1,421 @@
+---
+---
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+@import 'variables';
+@import 'minireset';
+@import 'wing.custom';
+@import 'simplegrid';
+@import 'highlighter';
+
+/*!
+ Main
+ */
+
+::selection {
+  background: $font-color;
+  color: $white;
+}
+::-moz-selection {
+  background: $font-color;
+  color: $white;
+}
+::-webkit-selection {
+  background: $font-color;
+  color: $white;
+}
+
+body {
+  background-color: $white;
+  color: $font-color;
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 70px;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  border-bottom: 1px solid $blue;
+  margin: 4rem 0 2rem 0;
+  font-size: 2.1rem;
+}
+
+h4 {
+  margin: 3rem 0 1rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+
+  code {
+    white-space: pre-wrap;
+  }
+
+  span {
+    color: $gray;
+    display: block;
+    font-family: "Consolas", "Monaco", "Menlo", monospace;
+    font-size: .7em;
+  }
+}
+
+.indent {
+
+  padding-left: $space;
+
+  &[data-level = '2'] {
+    padding-left: 40px;
+  }
+}
+
+.note {
+  border-left: 4px solid $blue;
+  padding: 10px 0 10px 10px;
+  margin-bottom: $space;
+  overflow: hidden;
+}
+
+div {
+
+  &.note {
+    padding: 10px 0 0 10px;
+  }
+}
+
+.align-center {
+  text-align: center;
+}
+
+.pullr {
+  float: right;
+}
+
+.button {
+  background-color: $font-color;
+  border: 1px solid $font-color;
+  border-radius: .4rem;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  letter-spacing: .1rem;
+  line-height: 1.4em;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &.gray-light {
+    background-color: $gray-light;
+    border-color: $gray-light;
+    color: $font-color;
+  }
+
+  &.outlined {
+    background-color: transparent;
+    color: $font-color;
+  }
+}
+
+.highlight {
+  word-wrap: normal;
+
+  code {
+    display: block;
+    background-color: #fcfcfc;
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    overflow-x: auto;
+    padding: 1.5rem;
+    word-wrap: normal;
+    word-break: normal;
+    white-space: pre;
+    font-size: .9em;
+  }
+}
+
+body[data-modal-visible='true'] {
+  overflow: hidden;
+
+  code {
+    overflow: hidden;
+  }
+}
+
+.grid {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.header-menu-open {
+  overflow: hidden;
+
+  .header {
+
+    nav {
+      display: block;
+    }
+  }
+
+  main {
+    display: none;
+  }
+}
+
+// Header
+.header {
+  position: fixed;
+  top: 0;
+  background-color: $blue;
+  z-index: 999;
+  width: 100%;
+  height: 55px;
+  line-height: 51px;
+  padding: 2px 0;
+  box-shadow: 0 0 0 2px rgba($blue, .5);
+
+  .title {
+    font-size: 2rem;
+    margin: 0;
+
+    a {
+  		text-decoration: none;
+      position: relative;
+      color: $black;
+      z-index: 99;
+
+      img {
+        margin: 0
+      }
+
+      span {
+        display: none;
+      }
+  	}
+	}
+
+  .header-menu-toggle {
+    display: none;
+    border: 0;
+    line-height: 50px;
+    font-size: 2.5em;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    text-align: right;
+  }
+
+  .menu {
+    float: right;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+      margin-bottom: 0;
+
+      a {
+        border-radius: 4px;
+        line-height: 2.5;
+        padding: 0 10px;
+        display: inline-block;
+        text-decoration: none;
+
+        &:link,
+        &:visited {
+          color: $black;
+        }
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+          color: $gray-light;
+          background-color: $black;
+        }
+      }
+
+      &.section {
+        color: $gray-light;
+        font-size: .7em;
+        letter-spacing: 1px;
+        padding: 5px 10px;
+        position: relative;
+        text-shadow: 0 0 2px $black;
+        top: -1px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .header-menu-toggle {
+      display: block;
+    }
+
+    nav {
+      display: none;
+      margin: 0;
+      padding: $space;
+      background: $blue;
+      position: fixed;
+      top: 50px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+
+      .menu {
+        float: none;
+        text-align: center;
+
+        a {
+          display: block;
+          margin: ($space / 2) 0;
+        }
+      }
+    }
+  }
+}
+
+// Page
+.page {
+  margin-bottom: $space;
+
+  .title {
+    line-height: 1;
+    position: relative;
+    text-transform: uppercase;
+
+    span {
+      color: $gray;
+      display: block;
+      font-size: .6em;
+      padding: 5px 0;
+      text-transform: none;
+
+      a {
+
+        &:link,
+        &:visited {
+          color: $gray;
+        }
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+          color: $gray;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .list {
+
+    li {
+
+      &::before {
+        content: "›";
+        margin-right: 5px;
+        color: $gray;
+      }
+    }
+  }
+
+  .menu {
+    li {
+      text-align: center;
+
+      a {
+        border-radius: 4px;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+        color: $black;
+        background-color: $gray-light;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: $gray;
+        }
+      }
+
+      &.section {
+        text-transform: uppercase;
+        color: $gray;
+      }
+    }
+  }
+
+  footer {
+    margin: ($space * 2) 0 0 0;
+    overflow: hidden;
+  }
+}
+
+// Footer
+.footer {
+  border-top: 1px solid $gray-light;
+  padding: $space 0;
+  text-align: center;
+  overflow: hidden;
+
+  a {
+    color: $black;
+  }
+}
+
+// 404
+.page-404 {
+
+  .description {
+    position: relative;
+  }
+
+  .face {
+    font-size: 10em;
+    line-height: 1;
+    margin: 2rem 0;
+
+    span {
+      display: inline-block;
+      width: .6em;
+      line-height: 1;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        font-size: .8em;
+        width: 1em;
+        text-align: left;
+        font-size: .8em;
+        animation-direction: alternate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-name: test;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 6em;
+    }
+  }
+}
+
+@keyframes test {
+  from {
+    left: -3px;
+  }
+
+  to {
+    left: 0px;
+  }
+}

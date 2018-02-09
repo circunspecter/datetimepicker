@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - '6'
+branches:
+  only:
+    - master
+install:
+  - npm install
+  - npm install coveralls
+  - npm install mocha-lcov-reporter
+script:
+  - npm run test:travis
+  - if [ $TRAVIS_TEST_RESULT -eq 0 ]; then npm run build; fi
+  - if [ $TRAVIS_TEST_RESULT -eq 0 ]; then chmod +x scripts/deploy.sh && scripts/deploy.sh; fi
+env:
+  global:
+    secure: zFSMVqwK3L1D0In6jnupEeBQpCmyegJGQm6Bu+9CF89pVfm9QZR9ecxYs4XgD4HRP+OR1PFd2HWXDQpn5f89wIT7RsvVwd8AYPtcfvaUoWJ1EQSMIPnnwOeXQuKYIH6AFuaMrwKAT/0jG+EOkUUtL17V6/zr028WsDV66RGROZ8vCWleGy3EelfmEIw712rEu1wByHItK/J4pHZpuLlA+TaUJ/DDyGO1sAjbhlXa0SCnLbCQeBs2TuU72BgL/5iNfJ9pxLHYzUzb4RcAXoqo3Cl8OvN/GEAU1XGRDWYiqsHDpTwxDOEpBvZYWE2qRF2bD9a9ENwGduXitQtqKEMCVcbJlMeE5ItSWWti9Q4uvypDhZMH8wODt/6LoSjJ74E5IgMJO1NKJB4KbFsR2N/CwmYTTE9BeFqMpE9wTJrmB3qaYNu7Glnm9+XHTNNf+B34LfqTogHINQsqL0she19D4VUt6LGzHhRCz0h3gkOxhx+9e4GPSFUCMYHJPdUZzCUO4NFyQKUMTGZxnpfXu8yWJRosaiyjrogGKyz8R6V2q+DYYGnJC+UjbQTn6EhE99fKrYXGjnxi+lBzqM026vBmPgwJ6Gj4FRCT71ErydAKzabDpNC1koNgwRUIpkLdYH97MwGveximyadbQGDbmzLZC06fdvQWkRfuI2hgfliTH00=

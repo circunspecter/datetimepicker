@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {% assign title = site.title %}
+    {% if page.title and page.url != '/' %}
+      {% capture title %}{{ page.title }} ~ {{ title }}{% endcapture %}
+    {% endif %}
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ page.meta_description }}">
+    <link rel="shortcut icon" href="{{ site.baseurl }}/assets/img/favicon.ico" type="image/x-icon" />
+    <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="grid">
+  			<h1 class="col-2-12 title">
+  				<a href="{{ site.baseurl }}/">
+            <img src="{{ site.baseurl }}/assets/img/logo.png" alt="Datetimepicker logo" />
+            <span>Datetimepicker</span>
+          </a>
+  			</h1>
+        <nav class="col-10-12">
+          {% capture menu %}{% include menu.md %}{% endcapture %}
+          {{ menu | markdownify }}
+        </nav>
+        <button class="header-menu-toggle" id="headerMenuToggle" title="Toggle menu">&equiv;</button>
+      </div>
+		</header>
+    <main class="grid">
+			<article class="col-1-1 page {{ page.class }}">
+        <header>
+          <h2 class="title">
+            {{ page.title }}
+            {% if page.subtitle %}
+              <span>
+                {{ page.subtitle }}
+                {% if page.subtitle_url_text %}
+                  <a href="{{ site.baseurl }}/{{ page.subtitle_url_path}}" title="{{ page.subtitle_url_text }}">{{ page.subtitle_url_text }}</a>
+                {% endif %}
+              </span>
+            {% endif %}
+          </h2>
+        </header>
+        {{ content }}
+        <footer markdown="0">
+          {% if page.prev_page_title %}
+            <a href="{{ site.baseurl }}/{{ page.prev_page_path}}" title="{{ page.prev_page_title }}" class="button gray-light">&lsaquo;&lsaquo; {{ page.prev_page_title }}</a>
+          {% endif %}
+          {% if page.next_page_title %}
+            <a href="{{ site.baseurl }}/{{ page.next_page_path}}" title="{{ page.next_page_title }}" class="button gray-light pullr">{{ page.next_page_title }} &rsaquo;&rsaquo;</a>
+          {% endif %}
+        </footer>
+			</article>
+		</main>
+    <footer class="footer">
+      <div class="grid">
+        <div class="col-1-1 mobile-col-1-1">
+          {% capture footer %}{% include footer.md %}{% endcapture %}
+          {{ footer | markdownify }}
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

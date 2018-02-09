@@ -1,0 +1,9 @@
+# compiled output
+/docs/_site
+/docs/.sass-cache
+
+# dependencies
+/node_modules
+
+# misc
+npm-debug.log
